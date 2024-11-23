@@ -41,4 +41,4 @@ Your privacy is important to us, and we are committed to ensuring that your info
 
 ----------------
 
-This Privacy Policy was last updated on [2024.07.10].
+This Privacy Policy was last updated on [2024.11.24].
