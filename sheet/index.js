@@ -304,10 +304,14 @@ async function addProductsFromImageSearchResponse(itemsByChance) {
     }
 }
 document.querySelector("#upload-image-input").addEventListener("change", async () => {
-    reset()
-    document.querySelector("#loading-spinner").style.display = "block"
-    const itemsByChance = await searchImageFileInput()
-    await addProductsFromImageSearchResponse(itemsByChance)
+    try {
+        reset()
+        document.querySelector("#loading-spinner").style.display = "block"
+        const itemsByChance = await searchImageFileInput()
+        await addProductsFromImageSearchResponse(itemsByChance)
+    } catch {
+        reset()
+    }
 })
 
 async function fetchBase64Image(base64) {
