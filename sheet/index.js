@@ -213,7 +213,7 @@ async function sleep(seconds) {
 var canvas = document.querySelector("#resize-canvas");
 var ctx = canvas.getContext("2d");
 
-async function resizeImage(img, multiplier) {
+async function resizeImage(img) {
     return new Promise((resolve) => {
         img.onload = () => {
             // set size proportional to image
@@ -223,15 +223,15 @@ async function resizeImage(img, multiplier) {
             var oc = document.createElement('canvas'),
                 octx = oc.getContext('2d');
 
-            oc.width = img.width * multiplier;
-            oc.height = img.height * multiplier;
+            oc.width = 1024;
+            oc.height = 1024;
             octx.drawImage(img, 0, 0, oc.width, oc.height);
 
             // step 2
-            octx.drawImage(oc, 0, 0, oc.width * multiplier, oc.height * multiplier);
+            octx.drawImage(oc, 0, 0, 512, 512);
 
             // step 3, resize to final size
-            ctx.drawImage(oc, 0, 0, oc.width * multiplier, oc.height * multiplier,
+            ctx.drawImage(oc, 0, 0, 512, 512,
                 0, 0, canvas.width, canvas.height);
             resolve(oc.toDataURL("image/png"))
         }
@@ -245,10 +245,8 @@ async function searchImageFileInput() {
     const objectURL = window.URL.createObjectURL(document.querySelector("#upload-image-input").files[0])
     image.src = objectURL
     let resizedB64
-    if (document.querySelector("#upload-image-input").files[0].size > 4000000) {
-        const resizedDataURL = await resizeImage(image, 0.25)
-        resizedB64 = resizedDataURL.replace("data:image/png;base64,", "")
-    } else resizedB64 = await convertBase64(document.querySelector("#upload-image-input").files[0])
+    const resizedDataURL = await resizeImage(image)
+    resizedB64 = resizedDataURL.replace("data:image/png;base64,", "")
 
     const split = resizedB64.split(",")
     const base64 = split[split.length - 1]
