@@ -570,7 +570,7 @@ async function getJoyaBuyLinkAPI(platform_link) {
 }
 
 async function getCNFansLinkAPI(platform_link) {
-    const res = await (await fetch("https://cnfans.com/search-info/search?Url=" + encodeURIComponent(platform_link)).json()
+    const res = await (await fetch("https://cnfans.com/search-info/search?Url=" + encodeURIComponent(platform_link))).json()
     const link = "https://cnfans.com/product/?shop_type=" + res.data.result.platForm + "&id=" + res.data.result.productId
     return link
 }
