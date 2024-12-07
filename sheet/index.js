@@ -219,19 +219,19 @@ async function resizeImage(img) {
             // set size proportional to image
             canvas.height = canvas.width * (img.height / img.width);
 
-            // step 1 - resize to 50%
+            // step 1 - resize to 512px
             var oc = document.createElement('canvas'),
                 octx = oc.getContext('2d');
 
-            oc.width = 1024;
-            oc.height = 1024;
+            oc.width = 512;
+            oc.height = 512;
             octx.drawImage(img, 0, 0, oc.width, oc.height);
 
             // step 2
-            octx.drawImage(oc, 0, 0, 512, 512);
+            octx.drawImage(oc, 0, 0, 256, 256);
 
             // step 3, resize to final size
-            ctx.drawImage(oc, 0, 0, 512, 512,
+            ctx.drawImage(oc, 0, 0, 256, 256,
                 0, 0, canvas.width, canvas.height);
             resolve(oc.toDataURL("image/png"))
         }
