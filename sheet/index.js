@@ -182,7 +182,7 @@ document.querySelector("#text-search").addEventListener("change", async () => {
 let prices
 
 async function currencies() {
-    prices = await (await fetch("https://open.er-api.com/v6/latest/CNY")).json()).rates
+    prices = (await (await fetch("https://open.er-api.com/v6/latest/CNY")).json()).rates
     const codes = Object.keys(prices)
     for (let i = 0; i < codes.length; i++) {
         const option = document.createElement("option")
