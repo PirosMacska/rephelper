@@ -251,6 +251,21 @@ select[name="sorting"] {
     width: 20%;
     flex: 1;
 }
+
+#exchange_rates_attribution {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    background-color: rgba(30, 30, 30, 0.9);
+    padding: 5px;
+    border-radius: 5px;
+}
+#exchange_rates_link {
+    font-size: 18px;
+    color: white;
+    text-decoration: underline;
+}
+
 @media (max-width: 1100px){
     .inspect-image {
         width: 30%;
