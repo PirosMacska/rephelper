@@ -1,0 +1,59 @@
+html {
+    background-color: rgb(19, 19, 19);
+}
+
+#navigation {
+    display: block;
+    top: 10px;
+    position: fixed;
+    width: 95%;
+    max-width: 2000px;
+    border-radius: 25px;
+    min-height: 50px;
+    background-color: rgb(31, 31, 31);
+    border: 2px solid black;
+    left: 50%;
+    transform: translate(-50%, 0);
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    padding-left: 20px;
+    padding-right: 20px;
+    justify-content: space-between;
+    gap: 0;
+    row-gap: 10px;
+    padding-bottom: 10px;
+}
+
+#header-spacing {
+    height: 80px;
+}
+
+#favicon-a {
+    height: 48px;
+    flex: 0;
+}
+#favicon-a > img {
+    border-radius: 10px;
+}
+
+#search {
+    height: 32px;
+    font-size: 16px;
+    flex: 1;
+    margin-left: 10px;
+    background-color: rgb(87, 87, 87);
+    box-shadow: 0;
+    border: 2px solid black;
+    border-radius: 10px;
+    color: white;
+}
+#picture-container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+.item-img {
+    width: 256px;
+}
