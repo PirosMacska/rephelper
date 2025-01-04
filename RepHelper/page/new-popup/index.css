@@ -1,0 +1,170 @@
+*::-webkit-scrollbar {
+    display: none;
+}
+
+html {
+    width: 300px;
+    height: 420px;
+    border: 1px solid black;
+    background-color: rgb(35, 35, 35);
+}
+
+#favicon_div {
+    height: 96px;
+    width: 96px;
+    display: inline-block;
+}
+
+#title_div {
+    height: 112px;
+    align-content: center;
+    display: inline-block;
+    vertical-align: top;
+    margin-left: 15px;
+}
+
+#title {
+    font-weight: bolder;
+    vertical-align: middle;
+    font-size: 32px;
+    color: white;
+}
+
+#favicon_div > img{
+    border-radius: 30px;
+    height: 96px;
+    width: 96px;
+    border: 2px solid white;
+}
+
+#preferred_currency_option_div {
+    border-top: 1px solid rgb(155, 155, 155);
+    padding-top: 5px;
+    margin-top: 20px;
+}
+#preferred_agent_option_div {
+    padding-top: 5px;
+    margin-top: 20px;
+}
+
+#settings_div {
+    position: absolute;
+    right: 5px;
+    top: 5px;
+    height: 32px;
+    width: 32px;
+}
+
+#settings_div > button {
+    background-color: transparent;
+    border: 0;
+    padding: 0;
+    height: 32px;
+    width: 32px;
+}
+
+#settings_div > button:hover {
+    filter: invert(0.5);
+}
+
+#settings_div > button > img{
+    filter: invert(1);
+    height: 32px;
+    width: 32px;
+}
+
+.option_text {
+    color: white;
+    font-size: 18px;
+    font-weight: bolder;
+}
+
+.option_text_small {
+    color: white;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+#preferred_currency_selector {
+    background-color: rgb(40, 40, 40);
+    color: white;
+    font-weight: bolder;
+}
+
+#preferred_currency_selector > option {
+    font-weight: bold;
+}
+
+#preferred_agent_selector {
+    background-color: rgb(40, 40, 40);
+    color: white;
+    font-weight: bolder;
+}
+
+#preferred_agent_selector > option {
+    font-weight: bold;
+}
+
+#rewrite_item_option_div {
+    margin-top: 30px;
+}
+#open_agent_option_div {
+    margin-top: 5px;
+}
+
+#rewrite_cart_option_div {
+    margin-top: 20px;
+}
+
+input:checked {
+    accent-color: rgb(14, 155, 155);
+}
+
+#contact_donate_div {
+    margin-top: 18px;
+}
+
+.contact_donate_img {
+    height: 28px;
+    width: 28px;
+    filter: grayscale(100%) brightness(1.3);
+    padding: 4px
+}
+
+.contact_donate_img:hover {
+    background-color: rgb(51, 51, 51);
+    border-radius: 10px;
+    transition: all 0.5s;
+}
+
+#spreadsheet_div {
+    border: 1px solid rgb(155, 155, 155);
+    border-radius: 8px;
+    padding: 3px;
+    margin-top: 10px;
+    border-bottom: 2px solid rgb(155, 155, 155);
+}
+
+#spreadsheet_div:hover {
+    border-bottom: 4px solid rgb(155, 155, 155);
+    transition: all 0.1s ease-in-out;
+}
+
+a, a:hover, a:active, a:visited, a:focus {
+    text-decoration:none;
+}
+
+#spreadsheet_img {
+    background-color: transparent;
+    width: 22px;
+    height: 22px;
+    filter: invert(1);
+}
+
+#exchange_rates_attribution {
+    margin-top: 15px;
+}
+
+#exchange_rates_attribution > a {
+    text-decoration: underline;
+}

@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rephelper</title>
+    <script src="./index.js" defer></script>
+    <link rel="stylesheet" href="./index.css">
+</head>
+
+<body>
+    <div id="favicon_div">
+        <img src="/images/PANDA-ACB128.png" alt="favicon" height="96px" width="96px">
+    </div>
+    <div id="title_div">
+        <span id="title">Rephelper</span>
+    </div>
+    <!--This looks cool but dont have a use for it, so i will keep it in incase i want to use it-->
+    <!--<div id="settings_div">
+        <button>
+            <img src="/images/settings.png" alt="">
+        </button>
+    </div>-->
+    <div id="options_tab">
+        <div class="option_div" id="preferred_currency_option_div">
+            <span class="option_text">Preferred currency</span>
+            <select name="preferred_currency" id="preferred_currency_selector">
+                <option>CNY</option>
+                <option>AED</option>
+                <option>AFN</option>
+                <option>ALL</option>
+                <option>AMD</option>
+                <option>ANG</option>
+                <option>AOA</option>
+                <option>ARS</option>
+                <option>AUD</option>
+                <option>AWG</option>
+                <option>AZN</option>
+                <option>BAM</option>
+                <option>BBD</option>
+                <option>BDT</option>
+                <option>BGN</option>
+                <option>BHD</option>
+                <option>BIF</option>
+                <option>BMD</option>
+                <option>BND</option>
+                <option>BOB</option>
+                <option>BRL</option>
+                <option>BSD</option>
+                <option>BTN</option>
+                <option>BWP</option>
+                <option>BYN</option>
+                <option>BZD</option>
+                <option>CAD</option>
+                <option>CDF</option>
+                <option>CHF</option>
+                <option>CLP</option>
+                <option>COP</option>
+                <option>CRC</option>
+                <option>CUP</option>
+                <option>CVE</option>
+                <option>CZK</option>
+                <option>DJF</option>
+                <option>DKK</option>
+                <option>DOP</option>
+                <option>DZD</option>
+                <option>EGP</option>
+                <option>ERN</option>
+                <option>ETB</option>
+                <option>EUR</option>
+                <option>FJD</option>
+                <option>FKP</option>
+                <option>FOK</option>
+                <option>GBP</option>
+                <option>GEL</option>
+                <option>GGP</option>
+                <option>GHS</option>
+                <option>GIP</option>
+                <option>GMD</option>
+                <option>GNF</option>
+                <option>GTQ</option>
+                <option>GYD</option>
+                <option>HKD</option>
+                <option>HNL</option>
+                <option>HRK</option>
+                <option>HTG</option>
+                <option>HUF</option>
+                <option>IDR</option>
+                <option>ILS</option>
+                <option>IMP</option>
+                <option>INR</option>
+                <option>IQD</option>
+                <option>IRR</option>
+                <option>ISK</option>
+                <option>JEP</option>
+                <option>JMD</option>
+                <option>JOD</option>
+                <option>JPY</option>
+                <option>KES</option>
+                <option>KGS</option>
+                <option>KHR</option>
+                <option>KID</option>
+                <option>KMF</option>
+                <option>KRW</option>
+                <option>KWD</option>
+                <option>KYD</option>
+                <option>KZT</option>
+                <option>LAK</option>
+                <option>LBP</option>
+                <option>LKR</option>
+                <option>LRD</option>
+                <option>LSL</option>
+                <option>LYD</option>
+                <option>MAD</option>
+                <option>MDL</option>
+                <option>MGA</option>
+                <option>MKD</option>
+                <option>MMK</option>
+                <option>MNT</option>
+                <option>MOP</option>
+                <option>MRU</option>
+                <option>MUR</option>
+                <option>MVR</option>
+                <option>MWK</option>
+                <option>MXN</option>
+                <option>MYR</option>
+                <option>MZN</option>
+                <option>NAD</option>
+                <option>NGN</option>
+                <option>NIO</option>
+                <option>NOK</option>
+                <option>NPR</option>
+                <option>NZD</option>
+                <option>OMR</option>
+                <option>PAB</option>
+                <option>PEN</option>
+                <option>PGK</option>
+                <option>PHP</option>
+                <option>PKR</option>
+                <option>PLN</option>
+                <option>PYG</option>
+                <option>QAR</option>
+                <option>RON</option>
+                <option>RSD</option>
+                <option>RUB</option>
+                <option>RWF</option>
+                <option>SAR</option>
+                <option>SBD</option>
+                <option>SCR</option>
+                <option>SDG</option>
+                <option>SEK</option>
+                <option>SGD</option>
+                <option>SHP</option>
+                <option>SLE</option>
+                <option>SLL</option>
+                <option>SOS</option>
+                <option>SRD</option>
+                <option>SSP</option>
+                <option>STN</option>
+                <option>SYP</option>
+                <option>SZL</option>
+                <option>THB</option>
+                <option>TJS</option>
+                <option>TMT</option>
+                <option>TND</option>
+                <option>TOP</option>
+                <option>TRY</option>
+                <option>TTD</option>
+                <option>TVD</option>
+                <option>TWD</option>
+                <option>TZS</option>
+                <option>UAH</option>
+                <option>UGX</option>
+                <option>USD</option>
+                <option>UYU</option>
+                <option>UZS</option>
+                <option>VES</option>
+                <option>VND</option>
+                <option>VUV</option>
+                <option>WST</option>
+                <option>XAF</option>
+                <option>XCD</option>
+                <option>XDR</option>
+                <option>XOF</option>
+                <option>XPF</option>
+                <option>YER</option>
+                <option>ZAR</option>
+                <option>ZMW</option>
+                <option>ZWL</option>
+            </select>
+        </div>
+        <div class="option_div" id="preferred_agent_option_div">
+            <span class="option_text">Preferred agent</span>
+            <select name="preferred_agent" id="preferred_agent_selector">
+                <option value="AllChinaBuy">AllChinaBuy</option>
+                <option value="CNFans">CNFans</option>
+                <option value="HooBuy">HooBuy</option>
+                <option value="SuperBuy">SuperBuy</option>
+                <option value="MuleBuy">MuleBuy</option>
+                <option value="Sugargoo">Sugargoo</option>
+                <option value="PandaBuy">PandaBuy</option>
+                <option value="JoyaBuy">JoyaBuy</option>
+                <option value="CSSBuy">CSSBuy</option>
+            </select>
+        </div>
+        <div class="option_div" id="open_agent_option_div">
+            <span class="option_text_small">Open links on platforms with preferred agent</span>
+            <input type="checkbox" name="open_agent" id="open_agent_input">
+        </div>
+        <div class="option_div" id="rewrite_item_option_div">
+            <span class="option_text_small">affiliate (when enabled writes my affiliate code to every item page you view)</span>
+            <input type="checkbox" name="rewrite_item" id="rewrite_item_input">
+        </div>
+    </div>
+    <div id="exchange_rates_attribution">
+        <a class="option_text_small" href="https://www.exchangerate-api.com" target="_blank">Rates By Exchange Rate API</a>
+    </div>
+    <div id="spreadsheet_div">
+        <a href="https://rephelps.com/sheet/index.html" target="_blank">
+            <img src="/images/document.png" alt="spreadsheet" id="spreadsheet_img">
+            <span class="option_text">Try our spreadsheet</span>
+        </a>
+    </div>
+</body>
+
+</html>

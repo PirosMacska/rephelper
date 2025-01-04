@@ -1,0 +1,216 @@
+html {
+    width: 300px;
+    height: 450px;
+    background-color: rgb(97, 197, 255);
+}
+
+.main {
+    background-color: rgb(54 54 54);
+    width: 298px;
+    height: 498px;
+    position: absolute;
+    left: 1px;
+    top: 1px;
+}
+
+.image_div {
+    position: absolute;
+    top: 20px;
+    left: calc(50% - 64px);
+    height: 128px;
+    width: 128px;
+    border-radius: 50%;
+}
+
+.image {
+    height: 128px;
+    width: 128px;
+    border-radius: 50%;
+}
+
+.title {
+    position: absolute;
+    top: 150px;
+    left: 50px;
+    font-size: 38px;
+    font-weight: bold;
+    color: rgb(89, 167, 219);
+}
+
+.sub-title {
+    position: absolute;
+    top: 200px;
+    left: 45px;
+    font-size: 18px;
+    font-weight: bold;
+    color: grey;
+}
+
+body>ul {
+    position: absolute;
+    top: 210px;
+    left: 30px;
+    margin: 0;
+    padding: 0;
+    padding-left: 0px;
+    list-style-type: none;
+}
+
+body>ul>li {
+    font-size: 18px;
+    color: rgb(235, 235, 235);
+    font-family: Arial, Helvetica, sans-serif;
+    margin-bottom: 8px;
+}
+
+.footer {
+    display: inline;
+    position: absolute;
+    bottom: 10px;
+}
+
+.paypal_div {
+    display: inline;
+}
+
+.paypal_button {
+    background-color: transparent;
+    border-color: transparent;
+}
+
+.paypal_button:hover {
+    background-color: rgb(70, 70, 70);
+    border-radius: 30px;
+}
+
+.donate-text {
+    display: inline;
+    font-size: 20px;
+    width: 230px;
+    float: right;
+    color: #2196F3;
+    font-weight: bold;
+}
+
+.paypal_img {
+    height: 32px;
+    width: 32px;
+}
+
+.switch {
+    position: relative;
+    display: inline-block;
+    margin-top: 20px;
+    width: 40px;
+    height: 20px;
+}
+
+/* Hide default HTML checkbox */
+.switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+/* The slider */
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    -webkit-transition: .4s;
+    transition: .4s;
+}
+
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 16px;
+    width: 16px;
+    left: 2px;
+    bottom: 2px;
+    background-color: white;
+    -webkit-transition: .4s;
+    transition: .4s;
+}
+
+input:checked+.slider {
+    background-color: #2196F3;
+}
+
+input:focus+.slider {
+    box-shadow: 0 0 1px #2196F3;
+}
+
+input:checked+.slider:before {
+    -webkit-transform: translateX(20px);
+    -ms-transform: translateX(20px);
+    transform: translateX(20px);
+}
+
+/* Rounded sliders */
+.slider.round {
+    border-radius: 34px;
+}
+
+.slider.round:before {
+    border-radius: 50%;
+}
+
+.donate-text.small {
+    font-size: 14px;
+}
+
+.want-to-help-text {
+    display: block;
+    margin-bottom: 20px;
+    font-size: 20px;
+    color: rgb(89, 167, 219);
+    font-weight: bolder;
+}
+
+.currency-select-text {
+    font-size: 22px;
+    color: #2196F3;
+    font-weight: bold;
+}
+
+.preferred-currency-div {
+    margin-bottom: 8px;
+}
+
+.currency-select {
+    border: 1px solid #2196F3;
+    outline: none;
+    background: rgb(54 54 54);
+    color: #2196F3;
+    font-weight: bold;
+    font-size: 16px;
+}
+
+.currency-select>option {
+    background: rgb(54 54 54);
+}
+
+#spreadsheet-link {
+    margin-top: 8px;
+    font-size: 16px;
+    color: aliceblue;
+    float: right;
+}
+
+#spreadsheet-link-div {
+    background-color: gray;
+    border-radius: 5px;
+}
+
+.dev-mode {
+    position: absolute;
+    height: 20px;
+    width: 20px;
+    top: 0px;
+    left: 0px;
+}

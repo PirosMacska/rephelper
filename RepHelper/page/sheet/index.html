@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rephelper spreadsheet</title>
+    <link rel="stylesheet" href="./index.css">
+    <script src="./index.js" defer></script>
+</head>
+
+<body>
+    <div id="header-spacing">
+
+    </div>
+    <div id="navigation">
+        <div id="nav-left">
+            <a href="https://chromewebstore.google.com/detail/rephelper/eihomjkgdfbgjdofddknjbcgjmkdilmg" target="_blank" id="favicon-a">
+                <img src="../../images/PANDA-ACB128.png" alt="favicon" height="48px" width="48px">
+            </a>
+            <input type="text" id="text-search">
+            <button id="upload-image-btn">
+                <img src="../../images/svg/upload_image.svg" alt="image-search" id="upload-img">
+                <input type="file" accept=".jpg,.png,.jpeg,.webp,.jfif,.avif" id="upload-image-input">
+            </button>
+        </div>
+        <div id="nav-right">
+            <select name="agents" id="agent-selector">
+                <option value="AllChinaBuy">AllChinaBuy</option>
+                <option value="CNFans">CNFans</option>
+                <option value="HooBuy">HooBuy</option>
+                <option value="SuperBuy">SuperBuy</option>
+                <option value="MuleBuy">MuleBuy</option>
+                <option value="Sugargoo">Sugargoo</option>
+                <option value="PandaBuy">PandaBuy</option>
+                <option value="JoyaBuy">JoyaBuy</option>
+                <option value="CSSBuy">CSSBuy</option>
+            </select>
+            <select name="currencies" id="currency-selector"></select>
+            <select name="sorting" id="sorting">
+                <option value="priceASC">Price: low to high</option>
+                <option value="priceDESC">Price: high to low</option>
+                <option value="salesASC">Sales: low to high</option>
+                <option value="salesDESC" selected>Sales: high to low</option>
+            </select>
+        </div>
+    </div>
+    <div id="product-container">
+        <div class="product-div">
+            <div class="item-description">
+                <div class="product-image-div">
+                    <img src="./test.jpg" alt="product_image" class="product-img" width="320px">
+                </div>
+                <div class="item-title-div">
+                    <span class="item-title">Freakbob (Lorem ipsum odor amet, consectetuer adipiscing elit. Aliquet
+                        aliquam fringilla leo imperdiet interdum quis arcu porta nascetur mattis.)</span>
+                </div>
+                <div class="item-info">
+                    <span class="item-price">21.123.212 - 123.123.213 CNY</span>
+                    <span class="item-sales">1210 sales</span>
+                </div>
+            </div>
+            <button href="https://google.com/" class="item-view" target="_blank">View Item</button>
+        </div>
+    </div>
+    <div id="input-blocker"></div>
+    <div id="product-inspect">
+        <div id="product-inspect-images"></div>
+    </div>
+    <span id="product-inspect-x">X</span>
+    <div><span id="loading-spinner" class="rotating">⟳</span></div>
+    <canvas class="no-display" id="resize-canvas"></canvas>
+
+    <div id="exchange_rates_attribution">
+        <a id="exchange_rates_link" href="https://www.exchangerate-api.com" target="_blank">Rates By Exchange Rate API</a>
+    </div>
+</body>
+
+</html>

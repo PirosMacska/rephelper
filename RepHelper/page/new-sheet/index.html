@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./index.css">
+    <script src="./index.js" defer></script>
+    <title>Rephelper spreadsheet</title>
+</head>
+
+<body>
+    <div id="blocker">
+        <span id="close_button">X</span>
+    </div>
+    <div id="product_inspect">
+        <div id="product_inspect_images">
+        </div>
+    </div>
+
+    <div id="navbar">
+        <a id="logo" href="https://chromewebstore.google.com/detail/rephelper/eihomjkgdfbgjdofddknjbcgjmkdilmg"
+            target="_blank">
+            <img src="../../images/PANDA-ACB128.png" alt="favicon" height="64px" width="64px" id="navbar_favicon">
+        </a>
+
+        <div id="navbar_left">
+            <div id="search_div">
+                <input type="text" id="search">
+            </div>
+        </div>
+
+        <div id="navbar_right">
+            <button id="sort_by_price">Price ↑</button>
+            <button id="sort_by_sales">Sales</button>
+            <select name="" id="agent_selector">
+                <option value="AllChinaBuy">AllChinaBuy</option>
+                <option value="CNFans">CNFans</option>
+                <option value="HooBuy">HooBuy</option>
+                <option value="SuperBuy">SuperBuy</option>
+                <option value="MuleBuy">MuleBuy</option>
+                <option value="Sugargoo">Sugargoo</option>
+                <option value="PandaBuy">PandaBuy</option>
+                <option value="JoyaBuy">JoyaBuy</option>
+                <option value="CSSBuy">CSSBuy</option>
+            </select>
+            <select name="" id="currency_selector">
+
+            </select>
+        </div>
+    </div>
+    <div id="standoff"></div>
+    <div id="products_container"></div>
+
+    <div><span id="loading-spinner" class="rotating">⟳</span></div>
+
+</html>

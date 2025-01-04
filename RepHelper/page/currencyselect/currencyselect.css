@@ -1,0 +1,34 @@
+.selectorDiv {
+    padding: 0;
+    margin: 0;
+    max-height: 100px;
+    display: inline-block;
+    margin-left: 20px;
+    scrollbar-width: none;
+}
+
+.selectorDiv > select {
+    height: fit-content;
+    font-size: 16px;
+    color: #f55;
+    font-weight: 700;
+    margin: 0;
+    padding: 0;
+    border: 1px solid #f55;
+    display: block;
+    outline: none;
+}
+
+.selectorDiv > select > option {
+    font-size: 16px;
+}
+
+.currencyNumberSpan {
+    display: contents;
+    color: #f55;
+    display: inline-block;
+    font-size: 20px;
+    font-weight: 700;
+    padding: 0;
+    margin: 0;
+}
