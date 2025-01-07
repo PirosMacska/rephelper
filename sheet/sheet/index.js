@@ -91,7 +91,7 @@ function addProduct(item) {
     document.querySelector(".new-element > button").addEventListener("click", () => {
         openProductPage(item.link)
     })
-    document.querySelector(".new-element").setAttribute("class", "product-div")
+    document.querySelector(".new-element").setAttribute("class", "product-div" + ((item.highlight) ? " high-lighted-product" : ""))
 }
 
 currency_selector.addEventListener("change", () => {
