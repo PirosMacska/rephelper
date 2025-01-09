@@ -368,8 +368,10 @@ async function addQCButtons(platform_link) {
     if (item === null || item.images === null || item.images === undefined) return
     const div = document.createElement("div")
     document.querySelector(".products-quality-control > .quality-control-content > .content-right").insertBefore(div, document.querySelector(".content-right > .quality-control-list"))
-    div.appendChild(document.querySelector(".products-quality-control > .quality-control-content > .content-right > p"))
-
+    if(document.querySelector(".products-quality-control > .quality-control-content > .content-right > p")) div.appendChild(document.querySelector(".products-quality-control > .quality-control-content > .content-right > p"))
+    else {
+        document.querySelector(".quality-control-content > div.content-right").style.alignItems = "end"
+    }
     const hyperlink = document.createElement("a")
     div.appendChild(hyperlink)
     hyperlink.textContent = "View more\n(" + item.images.length + ")"
