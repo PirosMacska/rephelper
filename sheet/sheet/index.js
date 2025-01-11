@@ -182,11 +182,13 @@ document.querySelector("select[name='sorting']").addEventListener("change", asyn
     await addDataIfBottom()
     document.addEventListener("scroll", addDataIfBottom)
 })
-document.querySelector("#text-search").addEventListener("change", async () => {
-    reset()
-    search = document.querySelector("#text-search").value
-    await addDataIfBottom()
-    document.addEventListener("scroll", addDataIfBottom)
+document.querySelector("#text-search").addEventListener("keypress", async (e) => {
+    if (e.which === 13) {
+        reset()
+        search = document.querySelector("#text-search").value
+        await addDataIfBottom()
+        document.addEventListener("scroll", addDataIfBottom)
+    }
 })
 
 let prices
