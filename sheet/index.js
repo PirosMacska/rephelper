@@ -172,7 +172,7 @@ document.querySelector("select[name='sorting']").addEventListener("change", asyn
     await addDataIfBottom()
     document.addEventListener("scroll", addDataIfBottom)
 })
-search_input.addEventListener("keypress", async (e) => {
+document.querySelector("#text-search").addEventListener("keypress", async (e) => {
     console.log(e.which)
     if (e.which === 13) {
         reset()
