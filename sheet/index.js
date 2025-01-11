@@ -73,15 +73,15 @@ function addProduct(item) {
     document.querySelector(".new-element > .item-description > .item-info > .item-sales").textContent = (item.sales + (item.salesSugargoo ?? 0)).toString() + " sales"
     document.querySelector(".new-element > .item-description > .item-info > .item-link").href = item.link
     let platform = ""
-    if(item.link.includes("weidian.com")) platform = "weidian"
-    else if(item.link.includes("taobao.com")) platform = "taobao"
-    else if(item.link.includes("tmall.com")) platform = "tmall"
-    else if(item.link.includes("1688.com")) platform = "1688"
-    else if(item.link.includes("yangkeduo.com")) platform = "yangkeduo"
+    if (item.link.includes("weidian.com")) platform = "weidian"
+    else if (item.link.includes("taobao.com")) platform = "taobao"
+    else if (item.link.includes("tmall.com")) platform = "tmall"
+    else if (item.link.includes("1688.com")) platform = "1688"
+    else if (item.link.includes("yangkeduo.com")) platform = "yangkeduo"
     document.querySelector(".new-element > .item-description > .item-info > .item-link").textContent = platform
 
     document.querySelector(".new-element > .item-description").addEventListener("click", () => {
-        if(document.querySelector("a.item-link:hover")) return
+        if (document.querySelector("a.item-link:hover")) return
         inspectItem(item)
     })
 
@@ -172,11 +172,14 @@ document.querySelector("select[name='sorting']").addEventListener("change", asyn
     await addDataIfBottom()
     document.addEventListener("scroll", addDataIfBottom)
 })
-document.querySelector("#text-search").addEventListener("change", async () => {
-    reset()
-    search = document.querySelector("#text-search").value
-    await addDataIfBottom()
-    document.addEventListener("scroll", addDataIfBottom)
+search_input.addEventListener("keypress", async (e) => {
+    console.log(e.which)
+    if (e.which === 13) {
+        reset()
+        search = document.querySelector("#text-search").value
+        await addDataIfBottom()
+        document.addEventListener("scroll", addDataIfBottom)
+    }
 })
 
 let prices
