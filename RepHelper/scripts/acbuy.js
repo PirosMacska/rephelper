@@ -153,17 +153,25 @@ async function handleACBuyDIYOrder() {
     }
 }
 
-window.addEventListener('load', async function () {
+async function main () {
     if (!this.document.location.hostname.includes("acbuy.com")) return
     let beforeUrl = null
     while (true) {
-        if (beforeUrl !== this.document.location.href && ((beforeUrl) ? !beforeUrl.includes("&u=" + myAffiliateCodeACBuy) && document.location.href.includes("&partnercode=" + myAffiliateCodeACBuy) : true)) {
+        const query = getQuery()
+        let beforeQuery
+        try {
+            beforeQuery = getQueryFromLink(beforeUrl)
+        } catch {
+            beforeQuery = {}
+        }
+        if ((beforeQuery.id !== query.id) || (beforeQuery.source !== query.source)) {
             if (document.location.href.includes("/product?")) addACBuyItemButtons()
             else if (document.location.href.includes("/uni-order?")) handleACBuyDIYOrder()
 
-            await sleep(2)
+            await sleep(4)
             beforeUrl = this.document.location.href
         }
-        await sleep(0.2)
+        await sleep(1)
     }
-})
+}
+main();
