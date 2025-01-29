@@ -4,20 +4,33 @@ async function addPriceConversionCNFansItem() {
     const placement = document.querySelector(".price")
     const mainDiv = document.createElement("div")
     placement.appendChild(mainDiv)
+    let price
 
-    let price = document.querySelector(".cny").textContent
+    if(document.querySelector(".cny")) {
+        price = document.querySelector(".cny").textContent
+    } else {
+        price = document.querySelector(".usd").textContent
+    }
 
     const mainConversionId = await addNewCurrencyDiv(mainDiv, "CNY", price, "#ea4c36", 20)
 
     document.querySelector("#js-skus").addEventListener("click", async () => {
         await sleep(0.3)
-        price = document.querySelector(".cny").textContent
+        if(document.querySelector(".cny")) {
+            price = document.querySelector(".cny").textContent
+        } else {
+            price = document.querySelector(".usd").textContent
+        }
         mainDiv.setAttribute("value", price)
         changeValueOnCurrencyDiv(mainConversionId, price)
     })
     while (true) {
         await sleep(3)
-        price = document.querySelector(".cny").textContent
+        if(document.querySelector(".cny")) {
+            price = document.querySelector(".cny").textContent
+        } else {
+            price = document.querySelector(".usd").textContent
+        }
         mainDiv.setAttribute("value", price)
         changeValueOnCurrencyDiv(mainConversionId, price)
     }
@@ -55,8 +68,8 @@ async function addPriceConversionCNFansCart() {
     mainDiv.style.bottom = "8px"
     placement.insertBefore(mainDiv, before)
 
-    let price = document.querySelector(".order-total").getAttribute("data-total_usd")
-    const mainConversionId = await addNewCurrencyDiv(mainDiv, "CNY", price, "#ea4c36", 22)
+    let price = Number(document.querySelector(".order-total").getAttribute("data-total_usd"))
+    const mainConversionId = await addNewCurrencyDiv(mainDiv, "USD", price, "#ea4c36", 22)
 
     document.querySelector(".woocommerce-cart-form__contents").addEventListener("click", async () => {
         await sleep(0.1)
