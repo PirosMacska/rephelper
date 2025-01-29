@@ -5,17 +5,34 @@ async function addPriceConversionJoyaBuyItem() {
     const mainDiv = document.createElement("div")
     placement.appendChild(mainDiv)
 
-    let price = document.querySelector(".cny").textContent
+    let price
+
+    if(document.querySelector(".cny")) {
+        price = document.querySelector(".cny").textContent
+    } else {
+        price = document.querySelector(".usd").textContent
+    }
+
     const mainConversionId = await addNewCurrencyDiv(mainDiv, "CNY", price, "#ea4c36", 20)
 
     document.querySelector("#js-skus").addEventListener("click", async () => {
         await sleep(0.3)
-        price = document.querySelector(".cny").textContent
+        //if the currency is set to CNY then the .usd element will have the price in CNY
+        //but if the currency is set to anything else the .cny will have the the price in CNY
+        if(document.querySelector(".cny")) {
+            price = document.querySelector(".cny").textContent
+        } else {
+            price = document.querySelector(".usd").textContent
+        }
         changeValueOnCurrencyDiv(mainConversionId, price)
     })
     while (true) {
         await sleep(3)
-        price = document.querySelector(".cny").textContent
+        if(document.querySelector(".cny")) {
+            price = document.querySelector(".cny").textContent
+        } else {
+            price = document.querySelector(".usd").textContent
+        }
         changeValueOnCurrencyDiv(mainConversionId, price)
     }
 }
@@ -30,7 +47,7 @@ async function addPriceConversionJoyaBuyCart() {
     placement.insertBefore(mainDiv, before)
 
     let price = document.querySelector(".order-total").getAttribute("data-total_usd")
-    const mainConversionId = await addNewCurrencyDiv(mainDiv, "CNY", price, "#ea4c36", 22)
+    const mainConversionId = await addNewCurrencyDiv(mainDiv, "USD", price, "#ea4c36", 22)
 
     document.querySelector(".woocommerce-cart-form__contents").addEventListener("click", async () => {
         await sleep(0.3)

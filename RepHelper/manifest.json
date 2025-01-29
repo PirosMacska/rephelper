@@ -156,6 +156,7 @@
         {
             "js": [
                 "scripts/shared/utils.js",
+                "scripts/shared/currencyselector.js",
                 "scripts/joyabuy.js",
                 "scripts/affiliate/utils.js",
                 "scripts/affiliate/joyabuy.js"
