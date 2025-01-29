@@ -5,18 +5,33 @@ async function addPriceConversionMuleBuyItem() {
     const mainDiv = document.createElement("div")
     placement.appendChild(mainDiv)
 
-    let price = document.querySelector(".cny").textContent
+    let price
+
+    if(document.querySelector(".cny")) {
+        price = document.querySelector(".cny").textContent
+    } else {
+        price = document.querySelector(".usd").textContent
+    }
+
     const mainConversionId = await addNewCurrencyDiv(mainDiv, "CNY", price, "#ea4c36", 20)
 
     mainDiv.setAttribute("value", document.querySelector(".cny").textContent)
     document.querySelector("#js-skus").addEventListener("click", async () => {
         await sleep(0.3)
-        price = document.querySelector(".cny").textContent
+        if(document.querySelector(".cny")) {
+            price = document.querySelector(".cny").textContent
+        } else {
+            price = document.querySelector(".usd").textContent
+        }
         changeValueOnCurrencyDiv(mainConversionId, price)
     })
     while (true) {
         await sleep(3)
-        price = document.querySelector(".cny").textContent
+        if(document.querySelector(".cny")) {
+            price = document.querySelector(".cny").textContent
+        } else {
+            price = document.querySelector(".usd").textContent
+        }
         changeValueOnCurrencyDiv(mainConversionId, price)
     }
 }
