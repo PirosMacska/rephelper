@@ -9,10 +9,9 @@ async function fetchLink(link) {
 
 function replaceQuery(url, key, value) {
     const query = getQueryFromLink(url)
-    query[key] = value
+    query[encodeURIComponent(key)] = encodeURIComponent(value)
     let queryString = "?"
     const queryKeys = Object.keys(query)
-    console.log(query)
     for(let i = 0; i < queryKeys.length; i++) {
         queryString += queryKeys[i]  + "=" + query[queryKeys[i]] + ((queryKeys.length - 1 === i) ? "" : "&" )
     }
