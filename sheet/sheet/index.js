@@ -229,6 +229,7 @@ async function resizeImage(img) {
     return new Promise((resolve) => {
         img.onload = () => {
             // set size proportional to image
+            canvas.width = 512
             canvas.height = canvas.width * (img.height / img.width);
 
             // step 1 - resize to 512px
@@ -240,10 +241,10 @@ async function resizeImage(img) {
             octx.drawImage(img, 0, 0, oc.width, oc.height);
 
             // step 2
-            octx.drawImage(oc, 0, 0, 256, 256);
+            octx.drawImage(oc, 0, 0, 512, 512);
 
             // step 3, resize to final size
-            ctx.drawImage(oc, 0, 0, 256, 256,
+            ctx.drawImage(oc, 0, 0, 512, 512,
                 0, 0, canvas.width, canvas.height);
             resolve(oc.toDataURL("image/png"))
         }
