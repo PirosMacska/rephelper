@@ -5,10 +5,12 @@ html {
 *:not(body):-webkit-scrollbar {
     display: none;
 }
+
 html {
     scrollbar-color: rgb(87, 87, 87) transparent;
     scrollbar-arrow-color: transparent;
 }
+
 :root {
     --text-color: white;
     --light-blue: rgb(50, 210, 255);
@@ -18,6 +20,7 @@ span {
     font-weight: bold;
     color: var(--text-color);
 }
+
 .high-lighted-product {
     border: 1px solid rgb(50, 210, 255);
     background-color: rgb(27, 29, 29);
@@ -44,6 +47,7 @@ span {
     max-width: 500px;
     flex: 1;
 }
+
 .product-div:not(.high-lighted-product) {
     border: 2px solid black;
     background-color: rgb(31, 31, 31);
@@ -59,7 +63,10 @@ span {
     padding-right: 10px;
     cursor: grab;
 }
-.main-price, .low-price, .high-price {
+
+.main-price,
+.low-price,
+.high-price {
     display: none;
 }
 
@@ -67,9 +74,11 @@ span {
     margin-top: 5px;
     align-self: center;
 }
+
 .product-img {
     border-radius: 20px;
 }
+
 .item-info {
     display: flex;
     flex-direction: column;
@@ -77,15 +86,18 @@ span {
     margin-bottom: 10px;
     gap: 10px;
 }
-.item-title-div  {
+
+.item-title-div {
     margin-left: auto;
     margin-right: auto;
 }
+
 .item-title {
     font-size: 18px;
     font-weight: bold;
     color: var(--text-color);
 }
+
 .item-view {
     display: flex;
     align-self: center;
@@ -97,26 +109,30 @@ span {
     text-decoration: none;
     font-size: 28px;
     color: black;
-    color: var(--text-color);;
+    color: var(--text-color);
     width: 100%;
     max-width: 300px;
     align-self: center;
     border: 0;
     cursor: pointer;
 }
+
 .item-link {
     color: var(--light-blue);
     font-size: 21px;
     text-decoration: none;
     font-weight: bold;
 }
+
 .item-link:hover {
     text-decoration: underline;
 }
+
 .item-price {
     color: var(--light-blue);
     font-size: 21px;
 }
+
 .item-sales {
     color: var(--text-color);
     font-size: 21px;
@@ -143,6 +159,7 @@ span {
     gap: 0;
     row-gap: 10px;
     padding-bottom: 10px;
+    z-index: 100000;
 }
 
 #nav-left {
@@ -151,6 +168,7 @@ span {
     align-items: center;
     justify-content: space-evenly;
 }
+
 #nav-right {
     width: 32%;
     min-width: 300px;
@@ -159,13 +177,15 @@ span {
     justify-content: space-evenly;
     gap: 20px;
 }
-#nav-right > select {
+
+#nav-right>select {
     height: 32px;
     background-color: rgb(87, 87, 87);
     color: white;
     font-size: 18px;
     flex: 1;
 }
+
 select[name="sorting"] {
     width: 32px;
 }
@@ -174,12 +194,13 @@ select[name="sorting"] {
     height: 48px;
     flex: 0;
 }
-#favicon-a > img {
+
+#favicon-a>img {
     border-radius: 10px;
 }
 
 #header-spacing {
-    height: 80px;
+    height: 120px;
 }
 
 #text-search {
@@ -193,6 +214,7 @@ select[name="sorting"] {
     border-radius: 10px;
     color: white;
 }
+
 #upload-image-btn {
     border: 0;
     border-radius: 12px;
@@ -202,12 +224,15 @@ select[name="sorting"] {
     padding: 0;
     margin-left: 10px;
 }
+
 #upload-image-btn:hover {
     background-color: rgb(19, 19, 19);
 }
+
 #upload-image-input {
     display: none;
 }
+
 #upload-img {
     height: 32px;
     flex: 0;
@@ -272,6 +297,7 @@ select[name="sorting"] {
     padding: 5px;
     border-radius: 5px;
 }
+
 #exchange_rates_link {
     font-size: 18px;
     color: white;
@@ -286,13 +312,14 @@ select[name="sorting"] {
 #settings-img {
     filter: invert(1);
 }
-#settings-button:hover > #settings-img {
+
+#settings-button:hover>#settings-img {
     filter: invert(0.8);
 }
 
 #settings-popup {
     display: none;
-    position:absolute;
+    position: absolute;
     right: 10px;
     border: 2px solid black;
     background-color: rgb(31, 31, 31);
@@ -311,19 +338,21 @@ select[name="sorting"] {
     cursor: pointer;
 }
 
-@media (max-width: 1100px){
+@media (max-width: 1100px) {
     .inspect-image {
         width: 30%;
         flex: 1;
     }
 }
-@media (max-width: 600px){
+
+@media (max-width: 600px) {
     .inspect-image {
         width: 45%;
         flex: 1;
     }
 }
-@media (max-width: 300px){
+
+@media (max-width: 300px) {
     .inspect-image {
         width: 95%;
         flex: 1;
@@ -382,4 +411,109 @@ select[name="sorting"] {
     -ms-animation: rotating 1s linear infinite;
     -o-animation: rotating 1s linear infinite;
     animation: rotating 1s linear infinite;
+}
+
+#advertisement {
+    display: flex;
+    border: 3px solid rgb(50, 210, 255);
+    height: 250px;
+    width: fit-content;
+    border-radius: 10px;
+    margin-bottom: 40px;
+}
+
+#advertisement:has(.advertisement-wrapper > .advertisement-close > #advertisement-checkbox:checked) {
+    display: none;
+}
+
+#advertisement-checkbox {
+    height: 16px;
+    width: 16px;
+    opacity: 0;
+    transform: translate(-8px, -2px);
+    position: absolute;
+}
+
+.no-select {
+    user-select: none;
+}
+
+.advertisement-container {
+    gap: 10px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    height: 100%;
+    width: 100%;
+}
+
+
+#advertisement>.advertisement-wrapper {
+    position: relative;
+    height: 100%;
+    width: 100%;
+}
+
+#advertisement>.advertisement-wrapper>.advertisement-close {
+    color: black;
+    background-color: rgb(50, 210, 255);
+    position: absolute;
+    border-top-right-radius: 5px;
+    border-bottom-left-radius: 5px;
+    top: 0;
+    right: 0;
+    z-index: 1000;
+}
+
+.advertisement-title {
+    font-size: 28px;
+    font-weight: bold;
+    margin-top: 10px;
+    position: absolute;
+    top: 0;
+    left: 3px;
+    z-index: 1000;
+}
+
+.advertisement-title>span {
+    font-family: monospace;
+    color: white;
+}
+
+.advertisement-links {
+    font-family: monospace, Arial;
+    font-size: 18px;
+    font-weight: bold;
+    margin-top: 10px;
+    position: absolute;
+    bottom: 3px;
+    right: 3px;
+    z-index: 1000;
+}
+
+.advertisement-links>a {
+    color: rgb(70, 230, 255);
+    text-decoration: underline;
+}
+
+.advertisement-image {
+    position: relative;
+}
+
+.advertisement-image>a {
+    cursor: grab;
+}
+
+.advert-banner-img {
+    max-width: 100%;
+    height: 100%;
+    border-radius: 10px;
+}
+
+.advert-shop-img {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    height: 128px;
+    border-radius: 15px;
 }
