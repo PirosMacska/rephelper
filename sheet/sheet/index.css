@@ -413,7 +413,7 @@ select[name="sorting"] {
     animation: rotating 1s linear infinite;
 }
 
-#advertisement {
+#promotion {
     display: flex;
     border: 3px solid rgb(50, 210, 255);
     height: fit-content;
@@ -422,11 +422,11 @@ select[name="sorting"] {
     margin-bottom: 40px;
 }
 
-#advertisement:has(.advertisement-wrapper > .advertisement-close > #advertisement-checkbox:checked) {
+#promotion:has(.promotion-wrapper > .promotion-close > #promotion-checkbox:checked) {
     display: none;
 }
 
-#advertisement-checkbox {
+#promotion-checkbox {
     height: 16px;
     width: 16px;
     opacity: 0;
@@ -438,7 +438,7 @@ select[name="sorting"] {
     user-select: none;
 }
 
-.advertisement-container {
+.promotion-container {
     gap: 10px;
     display: flex;
     flex-direction: row;
@@ -449,13 +449,13 @@ select[name="sorting"] {
 }
 
 
-#advertisement>.advertisement-wrapper {
+#promotion>.promotion-wrapper {
     position: relative;
     height: 100%;
     width: 100%;
 }
 
-#advertisement>.advertisement-wrapper>.advertisement-close {
+#promotion>.promotion-wrapper>.promotion-close {
     color: black;
     background-color: rgb(50, 210, 255);
     position: absolute;
@@ -466,7 +466,7 @@ select[name="sorting"] {
     z-index: 1000;
 }
 
-.advertisement-title {
+.promotion-title {
     font-size: 28px;
     font-weight: bold;
     margin-top: 10px;
@@ -476,12 +476,12 @@ select[name="sorting"] {
     z-index: 1000;
 }
 
-.advertisement-title>span {
+.promotion-title>span {
     font-family: monospace;
     color: white;
 }
 
-.advertisement-links {
+.promotion-links {
     font-family: monospace, Arial;
     font-size: 18px;
     font-weight: bold;
@@ -492,16 +492,16 @@ select[name="sorting"] {
     z-index: 1000;
 }
 
-.advertisement-links>a {
+.promotion-links>a {
     color: rgb(70, 230, 255);
     text-decoration: underline;
 }
 
-.advertisement-image {
+.promotion-image {
     position: relative;
 }
 
-.advertisement-image>a {
+.promotion-image>a {
     cursor: grab;
 }
 
