@@ -416,7 +416,7 @@ select[name="sorting"] {
 #advertisement {
     display: flex;
     border: 3px solid rgb(50, 210, 255);
-    height: 250px;
+    height: fit-content;
     width: fit-content;
     border-radius: 10px;
     margin-bottom: 40px;
@@ -443,6 +443,7 @@ select[name="sorting"] {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+    align-items: center;
     height: 100%;
     width: 100%;
 }
@@ -505,8 +506,11 @@ select[name="sorting"] {
 }
 
 .advert-banner-img {
-    max-width: 100%;
+    display: block;
+    width: 100%;
     height: 100%;
+    max-height: 250px;
+    max-width: 500px;
     border-radius: 10px;
 }
 
@@ -514,6 +518,6 @@ select[name="sorting"] {
     position: absolute;
     left: 0;
     bottom: 0;
-    height: 128px;
+    height: 50%;
     border-radius: 15px;
 }
