@@ -281,11 +281,13 @@ select[name="sorting"] {
     right: 3px;
     font-size: 28px;
     cursor: pointer;
+    z-index: 100000;
 }
 
 .inspect-image {
-    object-fit: cover;
+    object-fit: contain;
     width: 20%;
+    max-width: 80%;
     flex: 1;
 }
 
@@ -413,7 +415,7 @@ select[name="sorting"] {
     animation: rotating 1s linear infinite;
 }
 
-#promotion {
+#advertisement {
     display: flex;
     border: 3px solid rgb(50, 210, 255);
     height: fit-content;
@@ -422,11 +424,11 @@ select[name="sorting"] {
     margin-bottom: 40px;
 }
 
-#promotion:has(.promotion-wrapper > .promotion-close > #promotion-checkbox:checked) {
+#advertisement:has(.advertisement-wrapper > .advertisement-close > #advertisement-checkbox:checked) {
     display: none;
 }
 
-#promotion-checkbox {
+#advertisement-checkbox {
     height: 16px;
     width: 16px;
     opacity: 0;
@@ -436,6 +438,111 @@ select[name="sorting"] {
 
 .no-select {
     user-select: none;
+}
+
+.advertisement-container {
+    gap: 10px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+}
+
+
+#advertisement>.advertisement-wrapper {
+    position: relative;
+    height: 100%;
+    width: 100%;
+}
+
+#advertisement>.advertisement-wrapper>.advertisement-close {
+    color: black;
+    background-color: rgb(50, 210, 255);
+    position: absolute;
+    border-top-right-radius: 5px;
+    border-bottom-left-radius: 5px;
+    top: 0;
+    right: 0;
+    z-index: 1000;
+}
+
+.advertisement-title {
+    font-size: 28px;
+    font-weight: bold;
+    margin-top: 10px;
+    position: absolute;
+    top: 0;
+    left: 3px;
+    z-index: 1000;
+}
+
+.advertisement-title>span {
+    font-family: monospace;
+    color: white;
+}
+
+.advertisement-links {
+    font-family: monospace, Arial;
+    font-size: 18px;
+    font-weight: bold;
+    margin-top: 10px;
+    position: absolute;
+    bottom: 3px;
+    right: 3px;
+    z-index: 1000;
+}
+
+.advertisement-links>a {
+    color: rgb(70, 230, 255);
+    text-decoration: underline;
+}
+
+.advertisement-image {
+    position: relative;
+}
+
+.advertisement-image>a {
+    cursor: grab;
+}
+
+.advert-banner-img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    max-height: 250px;
+    max-width: 500px;
+    border-radius: 10px;
+}
+
+.advert-shop-img {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    height: 50%;
+    border-radius: 15px;
+}
+
+#promotion {
+    display: flex;
+    border: 3px solid rgb(50, 210, 255);
+    height: fit-content;
+    width: fit-content;
+    border-radius: 10px;
+    margin-bottom: 40px;
+}
+
+#promotion:has(.advertisement-wrapper > .advertisement-close > #advertisement-checkbox:checked) {
+    display: none;
+}
+
+#promotion-checkbox {
+    height: 16px;
+    width: 16px;
+    opacity: 0;
+    transform: translate(-8px, -2px);
+    position: absolute;
 }
 
 .promotion-container {
@@ -503,21 +610,4 @@ select[name="sorting"] {
 
 .promotion-image>a {
     cursor: grab;
-}
-
-.advert-banner-img {
-    display: block;
-    width: 100%;
-    height: 100%;
-    max-height: 250px;
-    max-width: 500px;
-    border-radius: 10px;
-}
-
-.advert-shop-img {
-    position: absolute;
-    left: 0;
-    bottom: 0;
-    height: 50%;
-    border-radius: 15px;
 }

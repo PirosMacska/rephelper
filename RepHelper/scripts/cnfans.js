@@ -1,46 +1,37 @@
-const diyOrderButtonText = '<span class="d-inline-block btn-tips" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-original-title="Please select category"><button id="DIYOrder" type="button" class="btn btn-primary btn-buy-lg btn-lg" data-product_id="422" data-product_sku="product" style="background-color: dimgray;border: 0;color: white;">DIY Order</button></span>'
+const diyOrderButtonText = '<span class="d-inline-block btn-tips" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-original-title="Please select category"><button id="DIYOrder" type="button" class="btn btn-primary btn-buy-lg btn-lg" data-product_id="422" data-product_sku="product" style="font-size: 18px;background-color: dimgray;border: 0;color: white;height: 100%;">DIY Order</button></span>'
 
 async function addPriceConversionCNFansItem() {
-    const placement = document.querySelector(".price")
+    const placement = document.querySelector(".product-price-info")
     const mainDiv = document.createElement("div")
     placement.appendChild(mainDiv)
     let price
 
-    if(document.querySelector(".cny")) {
-        price = document.querySelector(".cny").textContent
-    } else {
-        price = document.querySelector(".usd").textContent
-    }
+    price = document.querySelector(".product-price-cny").textContent.replace("CNY", "").replace("¥", "")
 
     const mainConversionId = await addNewCurrencyDiv(mainDiv, "CNY", price, "#ea4c36", 20)
 
-    document.querySelector("#js-skus").addEventListener("click", async () => {
+    document.querySelector(".product-attr").addEventListener("click", async () => {
         await sleep(0.3)
-        if(document.querySelector(".cny")) {
-            price = document.querySelector(".cny").textContent
-        } else {
-            price = document.querySelector(".usd").textContent
-        }
+        price = document.querySelector(".product-price-cny").textContent.replace("CNY", "").replace("¥", "")
         mainDiv.setAttribute("value", price)
         changeValueOnCurrencyDiv(mainConversionId, price)
     })
     while (true) {
         await sleep(3)
-        if(document.querySelector(".cny")) {
-            price = document.querySelector(".cny").textContent
-        } else {
-            price = document.querySelector(".usd").textContent
-        }
+        price = document.querySelector(".product-price-cny").textContent.replace("CNY", "").replace("¥", "")
         mainDiv.setAttribute("value", price)
         changeValueOnCurrencyDiv(mainConversionId, price)
     }
 }
 
 async function addQCPicturesCNFans(platform_link) {
-    const placement = document.querySelector("#product-info > div.col-lg-5")
+    const placement = document.querySelector(".product-layout-left")
     const item = await getItem(platform_link)
     if (item === null || item.images === null || item.images === undefined) return
     const div = document.createElement("div")
+    div.style.display = "flex"
+    div.style.flexDirection = "row"
+    div.style.marginTop = "10px"
     placement.appendChild(div)
 
     const hyperlink = document.createElement("a")
@@ -87,10 +78,10 @@ async function addCNFansItemButtons() {
     let loaded = false;
     while (!loaded) {
         await sleep(0.5)
-        if (this.document.querySelectorAll(".product-link.d-inline-flex.mx-2").length > 0) loaded = true
+        if (this.document.querySelectorAll(".product-link.product-title-menu").length > 0) loaded = true
     }
 
-    let risk = (this.document.querySelector(".modal-title.risk-title") == null || undefined ? false : true);
+    let risk = (this.document.querySelector(".product-reminder-title") == null || undefined ? false : true);
 
     if (risk) {
         const closeRiskReminderButton = this.document.createElement("button")
@@ -102,9 +93,10 @@ async function addCNFansItemButtons() {
         closeRiskReminderButton.textContent = "X"
         closeRiskReminderButton.style.zIndex = "20000"
         closeRiskReminderButton.style.cursor = "pointer"
-        document.querySelector(".modal-header.risk-header").appendChild(closeRiskReminderButton)
+        document.querySelector(".product-reminder-header").appendChild(closeRiskReminderButton)
         closeRiskReminderButton.addEventListener("click", () => {
-            document.querySelector(".modal-content.risk-content").parentElement.parentElement.removeChild(document.querySelector(".modal-content.risk-content").parentElement)
+            document.querySelector(".n-modal-container").remove()
+            document.querySelector("html").style.overflow = "auto"
         })
     }
 
@@ -132,8 +124,7 @@ async function addCNFansItemButtons() {
     copyButton.innerHTML = '<span style="margin-top: 10px; margin-left: 10px" class="d-inline-block btn-tips" data-toggle="tooltip" data-bs-placement="top" data-bs-original-title="Please select category"><button style="background: transparent; border-color: #D69847; color: #D69847;height: 30px; padding-top: 3px;" id="ACB" type="button" class="buy-now btn btn-primary btn-buy-lg js-ajax-order-submit" onclick="navigator.clipboard.writeText(\'' + platform_link + '\')" >Copy Link</button></span>'
     document.querySelector(".title").appendChild(copyButton)
 
-    document.querySelector("#goods_form").parentElement.insertBefore(placeToPutNewButtons, document.querySelector("#goods_form").nextSibling)
-    placeToPutNewButtons.style.marginTop = "10px"
+    document.querySelector(".product-purchase-btn-group").appendChild(placeToPutNewButtons)
     const agentSelectButtonPlacement = document.createElement("div")
     placeToPutNewButtons.appendChild(agentSelectButtonPlacement)
 
@@ -143,11 +134,14 @@ async function addCNFansItemButtons() {
     addNewAgentDiv(agentSelectButtonPlacement, agentSelector, platform_link, "#FF5555", "brightness(0) saturate(100%) invert(58%) sepia(55%) saturate(6167%) hue-rotate(330deg) brightness(105%) contrast(100%)")
 
     //DIY Order
-    const actionsContainer = document.querySelector("div.actions > div");
+    const actionsContainer = document.querySelector(".product-purchase-btn-group");
     actionsContainer.insertAdjacentHTML("beforeend", diyOrderButtonText)
 
-    const price = document.querySelector(".cny").textContent
-    const image = document.querySelector(".viewport > img.view-img").src
+    const price = document.querySelector(".product-price-cny").textContent.replace("CNY", "").replace("¥", "")
+    while (document.querySelector(".product-main-image") === null) {
+        await sleep(0.5)
+    }
+    const image = document.querySelector(".product-main-image").src
 
     const DIYOrderButton = document.querySelector("#DIYOrder")
     DIYOrderButton.addEventListener("click", () => {
@@ -158,7 +152,7 @@ async function addCNFansItemButtons() {
             specifications += skuItemList[i].textContent + "\n"
         }
 
-        window.open("https://cnfans.com/uniorder-order/?" + "price=" + encodeURIComponent(price) + "&url=" + encodeURIComponent(platform_link) + "&title=" + encodeURIComponent(name) + "&spec=" + encodeURIComponent(specifications) + "&image=" + image, "_blank")
+        window.open("https://cnfans.com/diy-order/?" + "price=" + encodeURIComponent(price) + "&url=" + encodeURIComponent(platform_link) + "&title=" + encodeURIComponent(name) + "&spec=" + encodeURIComponent(specifications) + "&image=" + image, "_blank")
     })
 }
 
