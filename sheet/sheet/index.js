@@ -58,7 +58,7 @@ function addProduct(item) {
     if (!item) return
     product_container.insertAdjacentHTML("beforeend", product_element)
     document.querySelector(".new-element > .item-description > .item-title-div > .item-title").textContent = (item.fixedName !== null && item.fixedName !== "" && item.fixedName !== undefined) ? item.fixedName : item.name
-    document.querySelector(".new-element > .item-description > .product-image-div > img.product-img").src = item.images[item.images.length - 1] || item.picUrl
+    document.querySelector(".new-element > .item-description > .product-image-div > img.product-img").src = item.images[item.images.length - 3] || item.picUrl
 
     let high_price = item.highPrice
     let low_price = item.lowPrice
