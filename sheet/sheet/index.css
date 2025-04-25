@@ -415,8 +415,11 @@ select[name="sorting"] {
     animation: rotating 1s linear infinite;
 }
 
+
+
+
 #advertisement {
-    display: flex;
+    display: none;
     border: 3px solid rgb(50, 210, 255);
     height: fit-content;
     width: fit-content;
@@ -424,8 +427,12 @@ select[name="sorting"] {
     margin-bottom: 40px;
 }
 
+
 #advertisement:has(.advertisement-wrapper > .advertisement-close > #advertisement-checkbox:checked) {
     display: none;
+}
+#advertisement:has(.advertisement-wrapper > .advertisement-container > .advertisement-image) {
+    display: flex;
 }
 
 #advertisement-checkbox {
