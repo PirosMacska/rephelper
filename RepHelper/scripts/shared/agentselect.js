@@ -58,8 +58,8 @@ let agentTable = [
         "star": false
     },
     {
-        "name": "JoyaBuy",
-        "convertLink": getJoyaBuyLink,
+        "name": "JoyaGoo",
+        "convertLink": getJoyaGooLink,
         "val": 0,
         "color": "#c30d23",
         "star": false

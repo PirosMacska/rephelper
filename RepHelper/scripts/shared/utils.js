@@ -1,7 +1,7 @@
 const myAffiliateCodeACB = "wrK9ge"
 const myAffiliateCodeCNFans = "287179"
 const myAffiliateCodeMuleBuy = "200024594"
-const myAffiliateCodeJoyaBuy = "300110510"
+const myAffiliateCodeJoyaGoo = "300110510"
 const myAffiliateCodeSugargoo = "1309026317230709277"
 const myAffiliateCodeSuperBuy = "wyf43X"
 const myAffiliateCodeHoobuy = "6ED2LpOR"
@@ -229,34 +229,34 @@ async function getMuleBuyLinkAPI(platform_link) {
     return link
 }
 
-async function getJoyaBuyLink(platform_link) {
+async function getJoyaGooLink(platform_link) {
     const query = getQueryFromLink(platform_link)
 
     let platform = -1
     let id = -1
     if (platform_link.includes("tmall.com") || platform_link.includes("taobao.com")) {
-        platform = "taobao"
+        platform = "TAOBAO"
         id = query["id"]
     } else if (platform_link.includes("weidian.com")) {
-        platform = "weidian"
+        platform = "WEIDIAN"
         id = query["itemId"]
     } else if (platform_link.includes("1688.com")) {
-        platform = "ali_1688"
+        platform = "ALI_1688"
         id = query["itemId"] || platform_link.split("/offer/")[1].split(".html")[0]
     }
 
-    if (platform === -1 || id === -1 || platform === undefined || id === undefined) return await getJoyaBuyLinkAPI(platform_link)
-    return "https://joyabuy.com/product/?shop_type=" + platform + "&id=" + id
+    if (platform === -1 || id === -1 || platform === undefined || id === undefined) return await getJoyaGooLinkAPI(platform_link)
+    return "https://joyagoo.com/product?platform=" + platform + "&id=" + id
 }
 
-async function getJoyaBuyLinkAPI(platform_link) {
+async function getJoyaGooLinkAPI(platform_link) {
     const res = JSON.parse(await chrome.runtime.sendMessage(
         {
             name: "fetchUrl",
-            url: "https://joyabuy.com/search-info/search?Url=" + encodeURIComponent(platform_link),
+            url: "https://joyagoo.com/search-info/search?input=" + encodeURIComponent(platform_link),
         }))
-    if (!res.data.result.platForm || !res.data.result.productId) return null
-    const link = "https://joyabuy.com/product/?shop_type=" + res.data.result.platForm + "&id=" + res.data.result.productId
+    if (!res.data.result.platform || !res.data.result.productID) return null
+    const link = "https://joyagoo.com/product?platform=" + res.data.result.platform + "&id=" + res.data.result.productID
     return link
 }
 
@@ -403,8 +403,8 @@ async function openLinkOnPreferredAgent(platform_link) {
         case "SuperBuy":
             agent_link = getSuperBuyLink(platform_link)
             break
-        case "JoyaBuy":
-            agent_link = await getJoyaBuyLink(platform_link)
+        case "JoyaGoo":
+            agent_link = await getJoyaGooLink(platform_link)
             break
         case "HooBuy":
             agent_link = await getHooBuyLink(platform_link)
