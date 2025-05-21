@@ -390,6 +390,21 @@ document.querySelector("#product-inspect-x").addEventListener("click", () => {
     removeInspector()
 })
 
+const inspectListener = async function listener(callback) {
+    if (document.querySelector("#product-inspect-images").scrollTop + document.querySelector("#product-inspect-images").clientHeight >= document.querySelector("#product-inspect-images").scrollHeight) {
+        callback()
+    }
+}
+
+function addListenerToInspectScrollDown(callback) {
+    if(document.querySelector("#product-inspect-images").scrollTop + document.querySelector("#product-inspect-images").clientHeight >= document.querySelector("#product-inspect-images").scrollHeight) callback()
+    document.querySelector("#product-inspect-images").addEventListener("scroll", inspectListener.bind(this, callback))
+}
+
+function removeListenerToInspectScrollDown() {
+    document.querySelector("#product-inspect-images").removeEventListener("scroll", inspectListener)
+}
+
 function removeInspector() {
     while (document.querySelector("#product-inspect-images").firstElementChild) {
         document.querySelector("#product-inspect-images").removeChild(document.querySelector("#product-inspect-images").firstElementChild)
@@ -397,6 +412,7 @@ function removeInspector() {
     allowInputs()
     product_inspect.style.display = "none"
     document.querySelector("#product-inspect-x").style.display = "none"
+    removeListenerToInspectScrollDown()
 }
 
 async function inspectItem(item) {
@@ -410,13 +426,35 @@ async function inspectItem(item) {
     first_image.setAttribute("class", "inspect-image")
     document.querySelector("#product-inspect-images").appendChild(first_image)
 
-    item.images.forEach(image => {
-        const new_image = document.createElement("img")
-        new_image.src = image
-        new_image.setAttribute("alt", "")
-        new_image.setAttribute("class", "inspect-image")
-        document.querySelector("#product-inspect-images").appendChild(new_image)
-    });
+    for (let i = 0; i < item.images.length && i < 20; i++) {
+        const image = document.createElement("img")
+        image.src = item.images[i]
+        image.setAttribute("alt", "")
+        image.setAttribute("class", "inspect-image")
+        document.querySelector("#product-inspect-images").appendChild(image)
+    }
+    if (item.images.length <= 20) return
+
+    let j = 20
+    let stopWatch = 0
+    async function stopWatchFunc() {
+        stopWatch++;
+        await sleep(0.1)
+        stopWatchFunc()
+    }
+    stopWatchFunc()
+    addListenerToInspectScrollDown(() => {
+        if (stopWatch < 2) return
+        stopWatch = 0
+        for (let i = j; i < item.images.length && i < j + 20; i++) {
+            const image = document.createElement("img")
+            image.src = item.images[i]
+            image.setAttribute("alt", "")
+            image.setAttribute("class", "inspect-image")
+            document.querySelector("#product-inspect-images").appendChild(image)
+        }
+        j += 20
+    })
 }
 
 function getQueryFromLink(link) {
