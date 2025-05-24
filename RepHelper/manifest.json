@@ -2,7 +2,7 @@
     "manifest_version": 3,
     "name": "RepHelper",
     "description": "Helps you navigate between agents, and makes your life easier with useful features",
-    "version": "1.11.5",
+    "version": "1.11.6",
     "icons": {
         "16": "images/PANDA-ACB16.png",
         "32": "images/PANDA-ACB32.png",
