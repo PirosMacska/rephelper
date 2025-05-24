@@ -41,6 +41,21 @@ async function addPriceConversionACBuyItem() {
     }
 }
 
+async function sha256(message) {
+    // encode as UTF-8
+    const msgBuffer = new TextEncoder().encode(message);
+
+    // hash the message
+    const hashBuffer = await crypto.subtle.digest('SHA-256', msgBuffer);
+
+    // convert ArrayBuffer to Array
+    const hashArray = Array.from(new Uint8Array(hashBuffer));
+
+    // convert bytes to hex string                  
+    const hashHex = hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
+    return hashHex;
+}
+
 async function addACBuyItemButtons() {
     let loaded = false;
     while (!loaded) {
@@ -113,6 +128,68 @@ async function addACBuyItemButtons() {
         window.open(link, "_blank")
     })
     addAgentSelectoreACBuy(platformLink)
+
+    const hyperlink = document.createElement("a")
+    document.querySelector(".qc-label").appendChild(hyperlink)
+    hyperlink.textContent = "View more"
+    hyperlink.style.color = "#31b38c"
+    hyperlink.style.display = "block"
+    hyperlink.style.cursor = "pointer"
+    hyperlink.style.pointerEvents = "all"
+    hyperlink.href = getProductImagesLink(platformLink)
+    hyperlink.target = "_blank"
+
+    try {
+        let ans = await sha256("testmessage");
+        if (ans !== "4209d1b6e775efbc9cddb255a84fe1252d7a61283d3e02a2766f3d16ed49b9b2") throw new Error("Test failed");
+        console.log("Test passed");
+    } catch (e) {
+        errorMessage("Error", "Test failed. Please update your browser or try on a different device or browser.");
+        console.error(e);
+        return;
+    }
+
+    const qcIMGs = document.querySelectorAll(".qc-img > ul > li > img")
+
+    //HashCash with sha256
+    const randomID = Math.random().toString(36).substring(2, 15);
+    const timestamp = Math.floor(Date.now() / 1000);
+    const hashed = randomID + platformLink + "acbuy" + timestamp.toString();
+    let hash;
+    let nonce = 0;
+    while (true) {
+        nonce++;
+        hash = await sha256(hashed + nonce.toString());
+        if( hash.startsWith("0000")) break;
+    }
+    console.log("Hash: " + hash + ", Nonce: " + nonce, "ID: " + randomID, "Hashed: " + hashed + nonce.toString());
+
+    const qcLinks = []
+    for (let i = 0; i < qcIMGs.length; i++) {
+        qcLinks.push(qcIMGs[i].src.split("?")[0])
+    }
+    if (qcLinks.length > 0) {
+        await backgroundFetch("https://qzpmvscvc3.execute-api.eu-north-1.amazonaws.com/sheet/add-item", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                link: platformLink,
+                agent: "acbuy",
+                images: qcLinks,
+                hashing: {
+                    id: randomID,
+                    hash: hash,
+                    nonce: nonce,
+                    timestamp: timestamp,
+                }
+            }),
+            mode: "no-cors",
+            credentials: "include"
+        })
+    }
+
 }
 
 async function handleACBuyDIYOrder() {
