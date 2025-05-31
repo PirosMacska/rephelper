@@ -277,8 +277,23 @@ function getSugargooLink(platform_link) {
 }
 
 async function getCSSBuyLink(platform_link) {
-    if (platform_link.includes("weidian") || platform_link.includes("1688.com")) return null
-    const link = "https://cssbuy.com/item-" + (getQueryFromLink(decodeURIComponent(platform_link)).id) + ".html"
+    let placeholder = ""
+    let ID = ""
+    const query = getQueryFromLink(platform_link)
+    if (platform_link.includes("weidian.com")) {
+        placeholder = "micro-"
+        ID = query.itemId || query.itemID
+    }
+    else if (platform_link.includes("1688.com")) {
+        placeholder = "1688-"
+        ID = platform_link.split("/offer/")[1].split(".html")[0]
+    }
+    else if (platform_link.includes("tmall.com") || platform_link.includes("taobao.com")) {
+        placeholder = ""
+        ID = query.id
+    }
+    else return null
+    const link = "https://cssbuy.com/item-" + placeholder + ID + ".html"
     return link
 }
 
