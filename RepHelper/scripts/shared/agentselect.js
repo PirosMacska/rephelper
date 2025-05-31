@@ -129,8 +129,8 @@ function addAgentElementToDisplay(agentElement) {
 
 function removeAgentFromDisplayByName(name) {
     const buttons = document.querySelectorAll(".displayedAgentButtonStyle")
-    for(let i = 0; i < buttons.length; i++) {
-        if(buttons[i].textContent === name) {
+    for (let i = 0; i < buttons.length; i++) {
+        if (buttons[i].textContent === name) {
             buttons[i].parentElement.removeChild(buttons[i])
         }
     }
@@ -163,10 +163,10 @@ async function addNewAgentDiv(agentButtonsDiv, agentSelectWindowDiv, platformLin
 
     //add star flag
     starredNames = (await chrome.storage.local.get(["starred"])).starred || []
-    for(let i = 0; i < starredNames.length; i++) {
+    for (let i = 0; i < starredNames.length; i++) {
         const agentElement = getAgentElementByName(starredNames[i])
         agentElement.star = true
-        if(agentElement !== null) addAgentElementToDisplay(agentElement)
+        if (agentElement !== null) addAgentElementToDisplay(agentElement)
     }
 
     const buttonPlacement = agentButtonsDiv
@@ -182,7 +182,7 @@ async function addNewAgentDiv(agentButtonsDiv, agentSelectWindowDiv, platformLin
     agentSelectOpenButton.setAttribute("class", "agentSelectOpenButton")
 
     agentSelectOpenButton.addEventListener("click", () => {
-        if(mainDiv.style.display !== "block") {
+        if (mainDiv.style.display !== "block") {
             mainDiv.style.display = "block"
             openMenuArrow.style.rotate = "180deg"
             openMenuArrow.style.top = "5px"
@@ -212,20 +212,24 @@ async function addNewAgentButton(agentElement) {
 
     const td1 = document.createElement("td")
     const button = document.createElement("button")
+
     button.textContent = agentElement.name
     button.setAttribute("class", "agentButton")
     button.style.color = mainColor
     button.style.border = "2px solid " + mainColor
 
     button.style.transition = "all ease 0.35s"
-    button.addEventListener("mouseover", ()=>{
+
+    const mouseOverFunction = () => {
         button.style.color = "white"
         button.style.backgroundColor = mainColor
-    })
-    button.addEventListener("mouseout", ()=>{
+    }
+    button.addEventListener("mouseover", mouseOverFunction)
+    const mouseOutFunction = () => {
         button.style.color = mainColor
         button.style.backgroundColor = "white"
-    })
+    }
+    button.addEventListener("mouseout", mouseOutFunction)
 
     td1.appendChild(button)
     tr.appendChild(td1)
@@ -275,7 +279,7 @@ async function addNewAgentButton(agentElement) {
             return
         }
         let added = false
-        for (let i = agentTable.length-1; i >= 0; i--) {
+        for (let i = agentTable.length - 1; i >= 0; i--) {
             if (agentTable[i].val === elementVal + 1) {
                 const buttons = document.querySelectorAll(".agentButton")
                 for (let j = 0; j < buttons.length; j++) {
@@ -289,7 +293,7 @@ async function addNewAgentButton(agentElement) {
             }
             if (added) break
         }
-        if(added === false) {
+        if (added === false) {
             table.insertBefore(tr, table.firstElementChild)
         }
     })
@@ -300,7 +304,7 @@ async function addNewAgentButton(agentElement) {
     const starButton = document.createElement("button")
     const star = document.createElement("img")
     star.src = absolutePath + ((agentElement.star === true) ? "images/svg/star_on.svg" : "images/svg/star_off.svg")
-    if(agentElement.star === true) star.setAttribute("selected", "true")
+    if (agentElement.star === true) star.setAttribute("selected", "true")
     star.setAttribute("class", "noDrag agentUpvoteSVG")
     starButton.setAttribute("class", "agentUpvote agentStar")
 
@@ -319,10 +323,22 @@ async function addNewAgentButton(agentElement) {
             removeAgentFromDisplayByName(agentElement.name)
             starredNames.splice(starredNames.indexOf(agentElement.name), 1)
         }
-        chrome.storage.local.set({"starred": starredNames})
+        chrome.storage.local.set({ "starred": starredNames })
     }))
     td3.appendChild(starButton)
     tr.appendChild(td3)
+
+    const turnedOff = (!(await agentElement.convertedLink)) ? true : false
+    console.log("Agent " + agentElement.name + " turned off: " + turnedOff)
+    if (turnedOff) {
+        button.style.backgroundColor = "gray"
+        button.style.color = "white"
+        button.style.borderColor = "darkgray"
+        button.disabled = true
+        button.style.cursor = "not-allowed"
+        button.removeEventListener("mouseover", mouseOverFunction)
+        button.removeEventListener("mouseout", mouseOutFunction)
+    }
 }
 
 function sortAgentTable() {
