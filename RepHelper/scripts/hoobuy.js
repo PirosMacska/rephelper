@@ -1,13 +1,14 @@
 async function addPriceConversionHooBuyItem() {
     const placement = document.querySelector(".price-wrapper")
     const mainDiv = document.createElement("div")
-    mainDiv.style.marginLeft = "5px"
-    placement.appendChild(mainDiv)
+    mainDiv.style.display = "block"
+    await sleep(0.1)
+    placement.parentElement.insertBefore(mainDiv, placement.nextElementSibling)
     
     let price = document.querySelector(".price-num").textContent.split(" ≈")[0].split("CNY ¥ ")[1]
-    const mainConversionId = await addNewCurrencyDiv(mainDiv, "CNY", price, "#f0700c", 30)
+    const mainConversionId = await addNewCurrencyDiv(mainDiv, "CNY", price, "#f0700c", 22)
     
-    document.querySelector(".goods-detail-wrapper.goods-detail-layout").addEventListener("click", async () => {
+    document.querySelector(".goods-sku-info-wrapper").addEventListener("click", async () => {
         await sleep(0.3)
         price = document.querySelector(".price-num").textContent.split(" ≈")[0].split("CNY ¥ ")[1]
         changeValueOnCurrencyDiv(mainConversionId, price)
@@ -23,7 +24,7 @@ async function addHooBuyItemButtons() {
     let loaded = false;
     while (!loaded) {
         await sleep(0.5)
-        if (this.document.querySelectorAll(".product-link").length > 0 && this.document.querySelector(".product-link").href !== "") loaded = true
+        if (this.document.querySelectorAll(".active-item").length > 0 && this.document.querySelector(".active-item").href !== "") loaded = true
     }
     await sleep(0.2)
     addPriceConversionHooBuyItem()
@@ -53,22 +54,23 @@ async function addHooBuyItemButtons() {
         riskWindow.appendChild(closeRiskReminderButton)
     }
 
-    const platform_link = this.document.querySelector(".product-link").href
+    const platform_link = this.document.querySelector(".active-item").href
     const name_element = document.querySelector(".product-name")
 
     const copyButton = document.createElement("span")
     copyButton.innerHTML = '<button data-v-d831b8cc="" aria-disabled="false" type="button" class="el-button hoo-primary" style="background-color: white; margin-left: 10px; height: 26px" onclick="navigator.clipboard.writeText(\'' + platform_link + '\')"><!--v-if--><span class="" style="color: #f0700c;">Copy platform link</span></button>'
     name_element.appendChild(copyButton)
 
-    const placement = document.querySelector(".goods-detail-wrapper.goods-detail-layout")
+    const placement = document.querySelector(".product-remark-wrapper")
     
     //agent selector
     const agentSelectButtonPlacement = document.createElement("div")
     agentSelectButtonPlacement.style.marginTop = "20px"
-    placement.appendChild(agentSelectButtonPlacement)
+    placement.parentElement.insertBefore(agentSelectButtonPlacement, placement.nextElementSibling)
 
     const agentSelector = document.createElement("div")
-    placement.appendChild(agentSelector)
+    agentSelector.style.position = "relative"
+    placement.parentElement.insertBefore(agentSelector, agentSelectButtonPlacement.nextElementSibling)
 
     addNewAgentDiv(agentSelectButtonPlacement, agentSelector, platform_link, "#f0700c", "brightness(0) saturate(100%) invert(43%) sepia(98%) saturate(1648%) hue-rotate(360deg) brightness(100%) contrast(91%)")
 }

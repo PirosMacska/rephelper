@@ -133,13 +133,13 @@ async function getHooBuyLink(platform_link) {
         id = query["id"]
     } else if (platform_link.includes("weidian.com")) {
         channel = 2
-        id = query["itemID"]
+        id = query["itemID"] || query["itemId"]
     } else if (platform_link.includes("1688.com")) {
         channel = 0
-        id = query["itemId"]
+        id = platform_link.split("/offer/")[1].split(".html")[0]
     }
 
-    if (channel === -1 || id === -1 || channel === undefined || id === undefined) return await getHooBuyLinkAPI(platform_link)
+    if (channel === -1 || id === -1) return await getHooBuyLinkAPI(platform_link)
     return "https://hoobuy.com/product/" + channel + "/" + id
 }
 
