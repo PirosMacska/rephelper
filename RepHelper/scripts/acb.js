@@ -337,6 +337,19 @@ async function addACBItemButtons() {
         link = "https://www.allchinabuy.com/en/page/buy/selfservice/?from=search-input&url=" + url + "&name=" + name + "&price=" + price + "&freight=10.00&desc=" + description + "&image=" + encodeURIComponent(goodsImage)
     })
 
+    //HashCash with sha256
+    const randomID = Math.random().toString(36).substring(2, 15);
+    const timestamp = Math.floor(Date.now() / 1000);
+    const hashed = randomID + platform_link + "acbuy" + timestamp.toString();
+    let hash;
+    let nonce = 0;
+    while (true) {
+        nonce++;
+        hash = await sha256(hashed + nonce.toString());
+        if( hash.startsWith("0000")) break;
+    }
+    console.log("Hash: " + hash + ", Nonce: " + nonce, "ID: " + randomID, "Hashed: " + hashed + nonce.toString());
+
     const qcPics = document.querySelectorAll(".rc-preview-image > .rc-image > .rc-image-img")
     const qcLinks = []
     for (let i = 0; i < qcPics.length; i++) {
@@ -350,8 +363,14 @@ async function addACBItemButtons() {
             },
             body: JSON.stringify({
                 link: platform_link,
-                agent: "allchinabuy",
-                images: qcLinks
+                agent: "acbuy",
+                images: qcLinks,
+                hashing: {
+                    id: randomID,
+                    hash: hash,
+                    nonce: nonce,
+                    timestamp: timestamp,
+                }
             }),
             mode: "no-cors",
             credentials: "include"
