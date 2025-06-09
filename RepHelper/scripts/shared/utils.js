@@ -442,6 +442,9 @@ async function openLinkOnPreferredAgent(platform_link) {
         case "CSSBuy":
             agent_link = getCSSBuyLink(platform_link)
             break
+        case "ACBuy":
+            agent_link = getACBuyLink(platform_link)
+            break
     }
     if (!agent_link) return
     else window.open(agent_link, "_self")
