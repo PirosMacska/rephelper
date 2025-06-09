@@ -342,13 +342,14 @@ async function fetchBase64Image(base64) {
 
 async function searchWithDataURL(dataURL) {
     const img = new Image()
-    img.src = event.target.result
-    let base64
-    if (event.target.result.length > 200000) {
+    img.src = dataURL
+    img.src = await resizeImage(img, 1)
+    let base64 = img.src.replace("data:image/png;base64,", "")
+    if (base64.length > 200000) {
         const resizedDataURL = await resizeImage(img, 0.25)
         base64 = resizedDataURL.replace("data:image/png;base64,", "")
     }
-    else base64 = event.target.result.replace("data:image/png;base64,", "")
+    else base64 = base64.replace("data:image/png;base64,", "")
     const itemsByChance = await fetchBase64Image(base64)
     return itemsByChance
 }
@@ -572,7 +573,6 @@ function getACBuyLink(platform_link) {
 
     let source = ""
     let id = 0
-    console.log(platform_link, query)
     if (platform_link.includes("tmall.com") || platform_link.includes("taobao.com")) {
         source = "TB"
         id = query["id"]
