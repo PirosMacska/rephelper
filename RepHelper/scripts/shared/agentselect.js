@@ -77,6 +77,13 @@ let agentTable = [
         "val": 0,
         "color": "#31b38c",
         "star": false
+    },
+    {
+        "name": "KakoBuy",
+        "convertLink": getKakoBuyLink,
+        "val": 0,
+        "color": "#ff5000",
+        "star": false
     }
 ]
 let starredNames = []

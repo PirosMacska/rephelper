@@ -43,7 +43,8 @@
                 "https://*.mulebuy.com/*",
                 "https://*.joyagoo.com/*",
                 "https://*.cssbuy.com/*",
-                "https://*.acbuy.com/*"
+                "https://*.acbuy.com/*",
+                "https://*.kakobuy.com/*"
             ]
         }
     ],
@@ -72,7 +73,8 @@
                 "https://*.mulebuy.com/*",
                 "https://*.joyagoo.com/*",
                 "https://*.cssbuy.com/*",
-                "https://*.acbuy.com/*"
+                "https://*.acbuy.com/*",
+                "https://*.kakobuy.com/*"
             ],
             "js": [
                 "scripts/shared/utils.js",
@@ -213,6 +215,15 @@
             ],
             "matches": [
                 "https://*.acbuy.com/*"
+            ]
+        },
+        {
+            "js": [
+                "scripts/shared/utils.js",
+                "scripts/kakobuy.js"
+            ],
+            "matches": [
+                "https://*.kakobuy.com/*"
             ]
         }
     ],
